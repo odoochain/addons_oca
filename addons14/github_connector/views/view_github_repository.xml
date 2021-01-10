@@ -178,6 +178,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <t t-if="record.is_ignored.raw_value">
                                     <span class="badge">
                                         <i class="fa fa-fw fa-ban" />
+                                        <t t-esc="record.team_qty.value" />
                                     </span>
                                 </t>
                             </div>
