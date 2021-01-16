@@ -28,7 +28,7 @@ class GithubTeamPartner(models.Model):
         required=True,
         index=True,
         readonly=True,
-        ondelete="cascade",
+        ondelete="restrict",
     )
 
     role = fields.Selection(
