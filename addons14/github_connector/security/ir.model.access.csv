@@ -14,3 +14,6 @@ access_github_team_partner_manager,github_team partner manager,model_github_team
 access_github_team_repository_reader,github_team repository reader,model_github_team_repository,,1,0,0,0
 access_github_team_repository_manager,github_team repository manager,model_github_team_repository,github_connector.group_github_connector_manager,1,1,1,1
 access_wizard_load_github_model,access_wizard_load_github_model,model_wizard_load_github_model,base.group_user,1,1,0,0
+access_wizard_create_team,access_wizard_create_team,model_wizard_create_team,base.group_user,1,1,1,1
+access_wizard_create_repository,access_wizard_create_repository,model_wizard_create_repository,base.group_user,1,1,1,1
+

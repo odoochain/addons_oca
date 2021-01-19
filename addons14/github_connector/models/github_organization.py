@@ -53,7 +53,6 @@ class GithubOrganization(models.Model):
     repository_ids = fields.One2many(
         comodel_name="github.repository",
         string="Repositories",
-        ondelete="restrict",
         inverse_name="organization_id",
         readonly=True,
     )
