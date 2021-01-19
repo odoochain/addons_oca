@@ -23,8 +23,8 @@ class ResPartner(models.Model):
     github_team_ids = fields.Many2many(
         string="Teams",
         comodel_name="github.team.partner",
-        # relation='account_journal_outbound_payment_method_rel',
-        inverse_name="partner_id",
+        column1="partner_id",
+        column2="team_id",
         readonly=True,
     )
 

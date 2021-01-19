@@ -161,6 +161,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                 <a target="_blank" t-att-href="record.github_url.value">
                                     <span class="badge">
                                         <i class="fa fa-fw fa-github-alt" />
+                                        <t t-esc="record.github_url.value" />
                                     </span>
                                 </a>
                                 <span class="badge">
