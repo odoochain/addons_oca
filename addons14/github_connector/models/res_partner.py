@@ -19,14 +19,14 @@ class ResPartner(models.Model):
         string="Is Bot Github Account",
         help="Check this box if this " "account is a bot or similar.",
     )
-
+# https://www.odoo.com/documentation/14.0/reference/orm.html
     github_team_ids = fields.Many2many(
-        string="Teams",
         comodel_name="github.team.partner",
+        string="Github Teams",
+        relation="github_team_partner_res_partner_rel",
         column1="partner_id",
-        column2="team_id",
-        readonly=True,
-    )
+        column2="github_team_partner_id",
+        readonly=True)
 
     github_team_qty = fields.Integer(
         string="Number of Teams", compute="_compute_github_team_qty", store=True
@@ -38,8 +38,7 @@ class ResPartner(models.Model):
         relation="github_organization_partner_rel",
         column1="partner_id",
         column2="organization_id",
-        readonly=True,
-    )
+        readonly=True)
 
     organization_qty = fields.Integer(
         string="Number of Organizations",

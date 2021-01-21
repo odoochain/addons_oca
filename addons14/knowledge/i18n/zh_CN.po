@@ -119,7 +119,7 @@ msgstr "知识"
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_res_config_settings__module_document_page
 msgid "Manage document pages (Wiki)"
-msgstr ""
+msgstr "文档WIKI管理"
 
 #. module: knowledge
 #: model:ir.module.category,description:knowledge.module_category_knowledge
@@ -128,16 +128,19 @@ msgid ""
 "            applications\n"
 "        "
 msgstr ""
+"管理文档和知识相关\n"
+"            应用\n"
+"        "
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_res_config_settings__module_document_page_approval
 msgid "Manage documents approval"
-msgstr ""
+msgstr "管理文档审批"
 
 #. module: knowledge
 #: model_terms:ir.ui.view,arch_db:knowledge.ir_attachment_view_user_documents
 msgid "Model"
-msgstr ""
+msgstr "模型"
 
 #. module: knowledge
 #: model:ir.model.fields,help:knowledge.field_res_config_settings__module_document_page
@@ -149,13 +152,13 @@ msgstr ""
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_ir_attachment__res_model
 msgid "Resource Model"
-msgstr ""
+msgstr "资源模型"
 
 #. module: knowledge
 #: model:ir.actions.act_window,name:knowledge.action_knowledge_configuration
 #: model:ir.ui.menu,name:knowledge.menu_knowledge_configuration
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #. module: knowledge
 #: model:ir.model.fields,field_description:knowledge.field_res_config_settings__module_cmis_write

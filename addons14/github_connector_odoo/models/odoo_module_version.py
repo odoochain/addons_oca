@@ -150,7 +150,7 @@ class OdooModuleVersion(models.Model):
     )
 
     author_ids_description = fields.Char(
-        string="Authors (Text)", compute="_compute_author", multi="author", store=True
+        string="Authors (Text)", compute="_compute_author", store=True
     )
 
     lib_python_ids = fields.Many2many(
