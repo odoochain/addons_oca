@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="ir_cron_queue_job_garbage_collector" model="ir.cron">
             <field name="name">Jobs Garbage Collector</field>
-            <field name="interval_number">5</field>
+            <field name="interval_number">15</field>
             <field name="interval_type">minutes</field>
             <field name="numbercall">-1</field>
             <field ref="model_queue_job" name="model_id" />
