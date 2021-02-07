@@ -1,1 +1,0 @@
-conda install -c conda-forge graphene graphql-server-core
