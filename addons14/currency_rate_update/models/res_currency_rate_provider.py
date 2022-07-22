@@ -1,6 +1,7 @@
 # Copyright 2009-2016 Camptocamp
 # Copyright 2010 Akretion
 # Copyright 2019-2020 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
@@ -24,7 +25,7 @@ class ResCurrencyRateProvider(models.Model):
         string="Company",
         comodel_name="res.company",
         required=True,
-        default=lambda self: self._default_company_id(),
+        default=lambda self: self.env.company,
     )
     currency_name = fields.Char(
         string="Currency Name", related="company_id.currency_id.name"
@@ -116,6 +117,9 @@ class ResCurrencyRateProvider(models.Model):
                 [("name", "in", provider._get_supported_currencies())]
             )
 
+    def _get_close_time(self):
+        return False
+
     def _update(self, date_from, date_to, newest_only=False):
         Currency = self.env["res.currency"]
         CurrencyRate = self.env["res.currency.rate"]
@@ -127,7 +131,9 @@ class ResCurrencyRateProvider(models.Model):
                     provider.currency_ids.mapped("name"),
                     date_from,
                     date_to,
-                ).items()
+                )
+                if data:
+                    data = data.items()
             except BaseException as e:
                 _logger.warning(
                     'Currency Rate Provider "%s" failed to obtain data since'
@@ -236,7 +242,7 @@ class ResCurrencyRateProvider(models.Model):
         value = direct
         if (
             currency_rate_inverted
-            and currency.with_company(self.company_id).rate_inverted
+            and currency.with_context(force_company=self.company_id.id).rate_inverted
         ):
             value = inverted
 
@@ -251,10 +257,6 @@ class ResCurrencyRateProvider(models.Model):
             return relativedelta(weeks=self.interval_number)
         elif self.interval_type == "months":
             return relativedelta(months=self.interval_number)
-
-    @api.model
-    def _default_company_id(self):
-        return self.env.company_id
 
     @api.model
     def _scheduled_update(self):
@@ -279,7 +281,14 @@ class ResCurrencyRateProvider(models.Model):
                     else (provider.next_run - provider._get_next_run_period())
                 )
                 date_to = provider.next_run
-                provider._update(date_from, date_to, newest_only=True)
+                if (date_to != fields.Date.today()) or (
+                    date_to == fields.Date.today()
+                    and (
+                        not provider._get_close_time()
+                        or datetime.now().hour >= provider._get_close_time()
+                    )
+                ):
+                    provider._update(date_from, date_to, newest_only=True)
 
         _logger.info("Scheduled currency rates update complete.")
 
